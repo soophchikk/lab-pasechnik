@@ -46,14 +46,17 @@ while True:
         print("Настроение:", mood)
         print("Энергия:", energy)
 
-        if hunger >= 90:
-            print("Питомец очень голоден!")
-        if energy <= 10:
-            print("Питомец сильно устал!")
-        if mood <= 10:
-            print("Питомец грустит!")
+        if mood <= 10 and energy <= 10 and hunger >= 80:
+            print("Питомец плохо себя чувствует!")
         else:
-            print("Питомец чувствует себя хорошо!")
+            if hunger >= 80:
+                print("Питомец очень голоден!")
+            if mood <= 10:
+                print("Питомец грустит!")
+            if energy <= 20:
+                print("Питомец сильно устал!")
+            if hunger < 70 and mood > 10 and energy > 10:
+                print("Питомец хорошо себя чувствует!")
 
     elif command == "rename":
         new_name = input("Введите новое имя: ")
