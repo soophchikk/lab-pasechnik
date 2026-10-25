@@ -1,42 +1,30 @@
+from pet_data import start_age, statrt_hunger, start_mood, start_energy, clamp
+
 print("===Тамагочи===")
 name = input("Введите имя питомца:")
-age = 1
-hunger = 50
-mood = 50
-energy = 50
+age = start_age
+hunger =  statrt_hunger
+mood = start_mood
+energy = start_energy
 
 print("Питомец", name, "появился!")
 
 while True:
     command = input("Введите команду (feed, play, sleep, status, rename, exit): ")
     if command == "feed":
-        hunger = hunger - 20
-        energy = energy + 5
-        if hunger < 0:
-            hunger = 0
-        if energy > 100:
-            energy = 100
+        hunger = clamp(hunger - 20, 0, 100)
+        energy = clamp(energy + 5, 0, 100)
         print(name, "покушал!")
 
     elif command == "play":
-        mood = mood + 20
-        energy = energy - 15
-        hunger = hunger + 10
-        if mood > 100:
-            mood = 100
-        if energy < 0:
-            energy = 0
-        if hunger > 100:
-            hunger = 100
+        mood = clamp(mood + 20, 0, 100)
+        energy = clamp(energy - 15, 0, 100)
+        hunger = clamp(hunger + 10, 0, 100)
         print("Вы поиграли с", name)
 
     elif command == "sleep":
-        energy = energy + 30
-        hunger = hunger + 10
-        if energy > 100:
-            energy = 100
-        if hunger > 100:
-            hunger = 100
+        energy = clamp(energy + 30, 0, 100)
+        hunger = clamp(hunger + 10, 0, 100)
         print(name, "поспал!")
 
     elif command == "status":
