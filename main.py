@@ -1,3 +1,6 @@
+import random
+random.seed(42)
+
 from pet_data import start_age, statrt_hunger, start_mood, start_energy, clamp, sleep, feed, play, show_help
 
 print("===Тамагочи===")
@@ -12,20 +15,34 @@ print("Питомец", name, "появился!")
 while True:
     command = input("Введите команду (feed, play, sleep, status, rename, exit): ")
     if command == "feed":
-        hunger = feed(hunger)
-        energy = clamp(energy + 5, 0, 100)
-        print(name, "покушал!")
+        event = random.randint(1, 3)
+        if event == 1:
+            print(name, "отказыввется от еды!")
+        else:
+            hunger = feed(hunger)
+            energy = clamp(energy + 5, 0, 100)
+            print(name, "покушал!")
 
     elif command == "play":
         mood = play(mood)
         energy = clamp(energy - 15, 0, 100)
         hunger = clamp(hunger + 10, 0, 100)
-        print("Вы поиграли с", name)
+        event = random.randint(1, 3)
+        if event == 1:
+            mood = clamp(mood + 10, 0, 100)
+            print(name, "нашел новую игрушку и стал счастливее!")
+        else:
+            print("Вы поиграли с", name)
 
     elif command == "sleep":
         energy = sleep(energy)
         hunger = clamp(hunger + 10, 0, 100)
-        print(name, "поспал!")
+        event = random.randint(1, 3)
+        if event == 1:
+            mood = clamp(mood - 10, 0, 100)
+            print(name, "капризничает и не хочет спать!")
+        else:
+            print(name, "поспал!")
 
     elif command == "status":
         print("Имя:", name)
