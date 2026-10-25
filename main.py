@@ -1,4 +1,4 @@
-from pet_data import start_age, statrt_hunger, start_mood, start_energy, clamp
+from pet_data import start_age, statrt_hunger, start_mood, start_energy, clamp, sleep, feed, play, show_help
 
 print("===Тамагочи===")
 name = input("Введите имя питомца:")
@@ -12,18 +12,18 @@ print("Питомец", name, "появился!")
 while True:
     command = input("Введите команду (feed, play, sleep, status, rename, exit): ")
     if command == "feed":
-        hunger = clamp(hunger - 20, 0, 100)
+        hunger = feed(hunger)
         energy = clamp(energy + 5, 0, 100)
         print(name, "покушал!")
 
     elif command == "play":
-        mood = clamp(mood + 20, 0, 100)
+        mood = play(mood)
         energy = clamp(energy - 15, 0, 100)
         hunger = clamp(hunger + 10, 0, 100)
         print("Вы поиграли с", name)
 
     elif command == "sleep":
-        energy = clamp(energy + 30, 0, 100)
+        energy = sleep(energy)
         hunger = clamp(hunger + 10, 0, 100)
         print(name, "поспал!")
 
@@ -54,6 +54,9 @@ while True:
             print("Теперь питомца зовут", name)
         else:
             print("Имя не может быть пустым!")
+
+    elif command == "help":
+        show_help()
 
     elif command == "exit":
         print("Игра завершена!")
