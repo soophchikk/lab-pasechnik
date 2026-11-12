@@ -15,6 +15,7 @@ print("Питомец", name, "появился!")
 while True:
     command = input("Введите команду (feed, play, sleep, status, rename, exit): ")
     if command == "feed":
+        add_actions(used_actions, "feed")
         event = random.randint(1, 3)
         if event == 1:
             print(name, "отказыввется от еды!")
@@ -24,6 +25,7 @@ while True:
             print(name, "покушал!")
 
     elif command == "play":
+        add_actions(used_actions, "play")
         mood = play(mood)
         energy = clamp(energy - 15, 0, 100)
         hunger = clamp(hunger + 10, 0, 100)
@@ -35,6 +37,7 @@ while True:
             print("Вы поиграли с", name)
 
     elif command == "sleep":
+        add_actions(used_actions, "sleep")
         energy = sleep(energy)
         hunger = clamp(hunger + 10, 0, 100)
         event = random.randint(1, 3)
@@ -62,6 +65,7 @@ while True:
                 print("Питомец сильно устал!")
             if hunger < 70 and mood > 10 and energy > 10:
                 print("Питомец хорошо себя чувствует!")
+
 
     elif command == "rename":
         new_name = input("Введите новое имя: ")
