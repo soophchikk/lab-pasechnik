@@ -1,12 +1,12 @@
 import random
 random.seed(42)
 
-from pet_data import start_age, statrt_hunger, start_mood, start_energy, clamp, sleep, feed, play, show_help
+from pet_data import *
 
 print("===Тамагочи===")
 name = input("Введите имя питомца:")
 age = start_age
-hunger =  statrt_hunger
+hunger =  start_hunger
 mood = start_mood
 energy = start_energy
 
